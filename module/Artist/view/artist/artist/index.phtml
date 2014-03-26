@@ -1,0 +1,36 @@
+<?php
+// module/Artist/view/artist/artist/index.phtml:
+
+$title = 'My artists';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<p>
+    <a href="<?php echo $this->url('artist', array('action'=>'add'));?>">Add new artist</a>
+</p>
+
+<table class="table">
+<tr>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Alias Name</th>
+    <th>Genre</th>
+    <th>Year</th>
+    <th>&nbsp;</th>
+</tr>
+<?php foreach ($artists as $artist) : ?>
+<tr>
+    <td><?php echo $this->escapeHtml($artist->first_name);?></td>
+    <td><?php echo $this->escapeHtml($artist->last_name);?></td>
+    <td><?php echo $this->escapeHtml($artist->alias_name);?></td>
+    <td><?php echo $this->escapeHtml($artist->genre);?></td>
+    <td><?php echo $this->escapeHtml($artist->year);?></td>
+    <td>
+        <a href="<?php echo $this->url('artist',
+            array('action'=>'edit', 'id' => $artist->id));?>">Edit</a>
+        <a href="<?php echo $this->url('artist',
+            array('action'=>'delete', 'id' => $artist->id));?>">Delete</a>
+    </td>
+</tr>
+<?php endforeach; ?>
+</table>
